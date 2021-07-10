@@ -9,7 +9,7 @@ import "./libraries/UniswapV2Library.sol";
 //fixed window oracle that recomputes average price for the entire period once every 30 minutes
 //price average is only guaranteed to be over at least 1 period, but may be over a longer period
 
-contract UniswapTWAPPriceOracle {
+contract FixedWindowTWAPPriceOracle {
     using FixedPoint for *;
 
     uint256 public constant PERIOD = 30 minutes;
@@ -29,8 +29,9 @@ contract UniswapTWAPPriceOracle {
         address tokenA,
         address tokenB
     ) public {
-        IUniswapV2Pair _pair =
-            IUniswapV2Pair(UniswapV2Library.pairFor(factory, tokenA, tokenB));
+        IUniswapV2Pair _pair = IUniswapV2Pair(
+            UniswapV2Library.pairFor(factory, tokenA, tokenB)
+        );
         pair = _pair;
         token0 = _pair.token0();
         token1 = _pair.token1();
