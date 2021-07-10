@@ -4,5 +4,5 @@
 require('@nomiclabs/hardhat-waffle');
 
 module.exports = {
-  solidity: "0.6.6",
+  solidity: "^0.6.6",
 };
